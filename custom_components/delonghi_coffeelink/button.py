@@ -61,25 +61,22 @@ class DelonghiStartBeverageButton(_Base):
         super().__init__(coord)
         self._bev_id = bev_id
         self._attr_unique_id = f"{coord.device.dsn}_start_{key}"
-        # Привязываем ключ для файла переводов ru.json
+        # Ключ для файла переводов ru.json
         self._attr_translation_key = key 
-        # Оставляем английское имя как fallback (если перевода нет)
-        self._attr_name = friendly
         self._attr_icon = icon
 
     async def async_press(self) -> None:
-        _LOGGER.info("Start beverage 0x%02x (%s)", self._bev_id, self._attr_name)
+        _LOGGER.info("Start beverage 0x%02x", self._bev_id)
         await self.coordinator.async_send_beverage(self._bev_id, 0x01)
 
 
 class DelonghiWakeButton(_Base):
-    """Wake the machine from standby (captured cmd family 0x84 0x0f)."""
+    """Wake the machine from standby."""
 
     def __init__(self, coord: DelonghiCoordinator) -> None:
         super().__init__(coord)
         self._attr_unique_id = f"{coord.device.dsn}_wake"
         self._attr_translation_key = "wake" # Связь с ru.json
-        self._attr_name = "Wake"
         self._attr_icon = "mdi:power"
 
     async def async_press(self) -> None:
@@ -88,18 +85,14 @@ class DelonghiWakeButton(_Base):
 
 
 class DelonghiStopButton(_Base):
-    """Press to STOP currently-running beverage (uses hot_water id + stop action as generic)."""
+    """Press to STOP currently-running beverage."""
 
     def __init__(self, coord: DelonghiCoordinator) -> None:
         super().__init__(coord)
         self._attr_unique_id = f"{coord.device.dsn}_stop"
         self._attr_translation_key = "stop" # Связь с ru.json
-        self._attr_name = "Stop"
         self._attr_icon = "mdi:stop"
 
     async def async_press(self) -> None:
-        # NOTE: the exact beverage_id used to stop may matter; using 0x10 (hot water)
-        # since that's the captured example. If machine needs the running beverage id,
-        # a future version can track current bev and stop it appropriately.
         _LOGGER.info("Generic stop command")
         await self.coordinator.async_send_beverage(0x10, 0x02)

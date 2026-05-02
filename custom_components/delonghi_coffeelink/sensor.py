@@ -57,6 +57,13 @@ class _Base(CoordinatorEntity[DelonghiCoordinator], SensorEntity):
             configuration_url=f"http://{d.lan_ip}" if d.lan_ip else None,
         )
 
+    @property
+    def available(self) -> bool:
+        """Override availability to use our cache during cloud timeouts."""
+        if hasattr(self, "_last_valid_state") and self._last_valid_state is not None:
+            return True
+        return self.coordinator.last_update_success
+
 
 class DelonghiCounterSensor(_Base):
     """Integer counter sensor with TOTAL_INCREASING state class."""

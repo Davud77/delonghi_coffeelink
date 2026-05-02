@@ -47,7 +47,7 @@ class DelonghiCoordinator(DataUpdateCoordinator[dict[str, Any]]):
             raise UpdateFailed(f"Error fetching Delonghi data: {err}") from err
 
     async def async_send_beverage(self, beverage_id: int, action: int) -> None:
-        """Build + send a beverage command via data_request property."""
+        """Build + send a beverage command via the correct data property."""
         from .command_builder import build_and_encode
 
         value = build_and_encode(beverage_id, action)
@@ -57,7 +57,12 @@ class DelonghiCoordinator(DataUpdateCoordinator[dict[str, Any]]):
             action,
             value,
         )
-        await self.client.async_set_property_value(self.device.dsn, "data_request", value)
+
+        # Выбираем правильное свойство для записи (app_data_request для новых моделей)
+        data_keys = self.data.keys() if self.data else []
+        prop_name = "app_data_request" if "app_data_request" in data_keys else "data_request"
+
+        await self.client.async_set_property_value(self.device.dsn, prop_name, value)
         await self.async_request_refresh()
 
     async def async_send_wake(self) -> None:
@@ -66,5 +71,10 @@ class DelonghiCoordinator(DataUpdateCoordinator[dict[str, Any]]):
 
         value = build_wake_encoded()
         _LOGGER.info("Sending WAKE cmd: %s", value)
-        await self.client.async_set_property_value(self.device.dsn, "data_request", value)
+
+        # Выбираем правильное свойство для записи (app_data_request для новых моделей)
+        data_keys = self.data.keys() if self.data else []
+        prop_name = "app_data_request" if "app_data_request" in data_keys else "data_request"
+
+        await self.client.async_set_property_value(self.device.dsn, prop_name, value)
         await self.async_request_refresh()
