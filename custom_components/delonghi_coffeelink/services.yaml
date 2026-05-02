@@ -31,6 +31,14 @@ start_beverage:
             - long_black
             - mug_to_go
             - brew_over_ice
+            - cold_americano
+            - cold_cappuccino
+            - cold_latte_macchiato
+            - cold_flat_white
+            - cold_milk
+            - cold_caffelatte
+            - cold_coffee
+            - cold_espresso
 
 stop_beverage:
   name: Stop Beverage
@@ -50,6 +58,8 @@ stop_beverage:
             - tea
             - cappuccino
             - americano
+            - cold_coffee
+            - cold_espresso
 
 send_raw_command:
   name: Send Raw Command
