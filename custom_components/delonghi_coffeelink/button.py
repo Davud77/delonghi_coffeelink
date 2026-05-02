@@ -26,7 +26,7 @@ async def async_setup_entry(
     for coord in coordinators:
         entities.append(DelonghiWakeButton(coord))
         for bev_id, key, friendly, icon in BEVERAGES:
-            entities.append(DelonghiStartBeverageButton(coord, bev_id, key, friendly, icon))
+            entities.append(DelonghiStartBeverageButton(coord, bev_id, key, icon))
         entities.append(DelonghiStopButton(coord))
     async_add_entities(entities)
 
@@ -55,13 +55,12 @@ class DelonghiStartBeverageButton(_Base):
         coord: DelonghiCoordinator,
         bev_id: int,
         key: str,
-        friendly: str,
         icon: str,
     ) -> None:
         super().__init__(coord)
         self._bev_id = bev_id
         self._attr_unique_id = f"{coord.device.dsn}_start_{key}"
-        # Ключ для файла переводов ru.json
+        # Привязываем ключ для файла переводов ru.json (без fallback'а на английский!)
         self._attr_translation_key = key 
         self._attr_icon = icon
 
@@ -71,7 +70,7 @@ class DelonghiStartBeverageButton(_Base):
 
 
 class DelonghiWakeButton(_Base):
-    """Wake the machine from standby."""
+    """Wake the machine from standby (captured cmd family 0x84 0x0f)."""
 
     def __init__(self, coord: DelonghiCoordinator) -> None:
         super().__init__(coord)
@@ -85,7 +84,7 @@ class DelonghiWakeButton(_Base):
 
 
 class DelonghiStopButton(_Base):
-    """Press to STOP currently-running beverage."""
+    """Press to STOP currently-running beverage (uses hot_water id + stop action as generic)."""
 
     def __init__(self, coord: DelonghiCoordinator) -> None:
         super().__init__(coord)

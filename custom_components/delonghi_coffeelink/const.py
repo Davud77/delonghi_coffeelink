@@ -77,6 +77,8 @@ BEVERAGES = [
     # Cold Brew Drinks (ECAM450.86.T)
     (0x78, "cold_coffee",     "Cold Brew Coffee",    "mdi:coffee-outline"),
     (0x79, "cold_espresso",   "Cold Brew Espresso",  "mdi:coffee-outline"),
+    (0x7B, "cold_brew_latte", "Cold Brew Latte",     "mdi:coffee-outline"),
+    (0x7C, "cold_brew_cappuccino", "Cold Brew Cappuccino", "mdi:coffee-outline"),
 ]
 
 # Counter properties to expose as sensors: (property_name, entity_key, display_name, icon)
@@ -93,20 +95,30 @@ COUNTER_SENSORS = [
     ("d719_id22_tea",          "total_tea",           "Total Tea",           "mdi:tea"),
     ("d720_tot_id23_coffee_pot", "total_coffee_pot",  "Total Coffee Pot",    "mdi:coffee-maker"),
     ("d551_cnt_coffee_fondi",  "grounds_counter",     "Grounds Counter",     "mdi:dots-grid"),
+    ("d554_cnt_filter_tot",    "total_filters_used",  "Total Filters Used",  "mdi:filter-check"),
     ("d825_descale_status",    "descale_status",      "Descale Status",      "mdi:water-pump"),
     ("d556_water_hardness",    "water_hardness",      "Water Hardness",      "mdi:water-percent"),
     
     # New Sensors for Eletta Explore (from nested JSON blocks)
     ("tot_bev_b_iced",                 "total_iced_coffee", "Total Iced Coffee", "mdi:cup-water"),
+    ("tot_id51_iced_capp",             "total_iced_cappuccino", "Total Iced Cappuccino", "mdi:coffee-outline"),
+    ("tot_id52_iced_latte_macc",       "total_iced_latte_macchiato", "Total Iced Latte Macchiato", "mdi:coffee-outline"),
+    ("tot_id56_iced_caffelatte",       "total_iced_caffelatte", "Total Iced Caffe Latte", "mdi:coffee-outline"),
     ("tot_id120_cold_brew_coffee",     "total_cb_coffee",   "Total Cold Brew",   "mdi:coffee-outline"),
     ("tot_id121_cold_brew_coffee_ess", "total_cb_espresso", "Total CB Espresso", "mdi:coffee-outline"),
     ("tot_id122_cold_brew_coffee_pot", "total_cb_pot",      "Total CB Pot",      "mdi:coffee-maker-outline"),
+    ("tot_id123_cold_brew_latte",      "total_cb_latte",    "Total CB Latte",    "mdi:coffee-outline"),
+    ("tot_id124_cold_brew_cappuccino", "total_cb_cappuccino", "Total CB Cappuccino", "mdi:coffee-outline"),
 ]
 
 # Info sensors (not counters, general state)
 INFO_SENSORS = [
-    ("software_version",       "software_version",    "Software Version",    "mdi:chip"),
-    ("device_connected",       "last_connected",      "Last Connected",      "mdi:clock-outline"),
+    ("software_version",           "software_version",    "Software Version",    "mdi:chip"),
+    ("device_connected",           "last_connected",      "Last Connected",      "mdi:clock-outline"),
+    ("app_device_status",          "device_status",       "Device Status",       "mdi:information"),
+    ("d510_ground_cnt_percentage", "grounds_percentage",  "Grounds Percentage",  "mdi:delete-empty"),
+    ("d512_percentage_to_deca",    "descale_percentage",  "Descale Percentage",  "mdi:water-off"),
+    ("d513_percentage_usage_fltr", "filter_percentage",   "Filter Usage Percentage", "mdi:filter"),
 ]
 
 PLATFORMS = ["sensor", "button"]
