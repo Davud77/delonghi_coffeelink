@@ -82,11 +82,12 @@ BEVERAGES = [
 ]
 
 # Counter properties to expose as sensors: (property_name, entity_key, display_name, icon)
+# Updated property names to match Eletta Explore dump exactly
 COUNTER_SENSORS = [
-    ("d700_tot_bev_b",         "total_beverages",     "Total Beverages",     "mdi:counter"),
+    ("d701_tot_bev_b",         "total_beverages",     "Total Beverages",     "mdi:counter"),
     ("d704_tot_bev_espressi",  "total_espresso",      "Total Espresso",      "mdi:coffee"),
-    ("d701_tot_bev_bw",        "total_milk_drinks",   "Total Milk Drinks",   "mdi:cup"),
-    ("d703_tot_bev_w",         "total_water",         "Total Water",         "mdi:water"),
+    ("tot_bev_bw",             "total_milk_drinks",   "Total Milk Drinks",   "mdi:cup"),
+    ("tot_bev_w",              "total_water",         "Total Water",         "mdi:water"),
     ("d710_tot_id7_capp",      "total_cappuccino",    "Total Cappuccino",    "mdi:coffee"),
     ("d711_id8_lattmacc",      "total_latte_macchiato", "Total Latte Macchiato", "mdi:coffee"),
     ("d712_id9_cafflatt",      "total_caffelatte",    "Total Caffe Latte",   "mdi:coffee"),
@@ -96,7 +97,7 @@ COUNTER_SENSORS = [
     ("d720_tot_id23_coffee_pot", "total_coffee_pot",  "Total Coffee Pot",    "mdi:coffee-maker"),
     ("d551_cnt_coffee_fondi",  "grounds_counter",     "Grounds Counter",     "mdi:dots-grid"),
     ("d554_cnt_filter_tot",    "total_filters_used",  "Total Filters Used",  "mdi:filter-check"),
-    ("d825_descale_status",    "descale_status",      "Descale Status",      "mdi:water-pump"),
+    ("descale_status",         "descale_status",      "Descale Status",      "mdi:water-pump"),
     ("d556_water_hardness",    "water_hardness",      "Water Hardness",      "mdi:water-percent"),
     
     # New Sensors for Eletta Explore (from nested JSON blocks)
@@ -112,9 +113,10 @@ COUNTER_SENSORS = [
 ]
 
 # Info sensors (not counters, general state)
+# Updated property names to match Eletta Explore dump exactly
 INFO_SENSORS = [
     ("software_version",           "software_version",    "Software Version",    "mdi:chip"),
-    ("device_connected",           "last_connected",      "Last Connected",      "mdi:clock-outline"),
+    ("app_device_connected",       "last_connected",      "Last Connected",      "mdi:clock-outline"),
     ("app_device_status",          "device_status",       "Device Status",       "mdi:information"),
     ("d510_ground_cnt_percentage", "grounds_percentage",  "Grounds Percentage",  "mdi:delete-empty"),
     ("d512_percentage_to_deca",    "descale_percentage",  "Descale Percentage",  "mdi:water-off"),

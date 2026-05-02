@@ -39,10 +39,11 @@ async def async_setup_entry(
 class _Base(CoordinatorEntity[DelonghiCoordinator], SensorEntity):
     _attr_has_entity_name = True
 
-    def __init__(self, coord: DelonghiCoordinator, unique_suffix: str, name: str, icon: str) -> None:
+    def __init__(self, coord: DelonghiCoordinator, unique_suffix: str, friendly: str, icon: str) -> None:
         super().__init__(coord)
         self._attr_unique_id = f"{coord.device.dsn}_{unique_suffix}"
-        self._attr_name = name
+        # Привязываем ключ локализации из const.py, который совпадает с ключами в ru.json
+        self._attr_translation_key = unique_suffix
         self._attr_icon = icon
 
     @property
@@ -80,23 +81,20 @@ class DelonghiCounterSensor(_Base):
     ) -> None:
         super().__init__(coord, key, friendly, icon)
         self._prop_name = prop_name
-        self._last_valid_state: int | None = None  # Кэш для защиты от отвалов
+        self._last_valid_state: int | None = None
 
     @property
     def native_value(self) -> int | None:
         data = self.coordinator.data or {}
         val = None
 
-        # 1. Ищем свойство на верхнем уровне (стандартные счетчики)
         prop = data.get(self._prop_name)
         if prop and "value" in prop:
             val = prop.get("value")
         else:
-            # 2. Если не нашли, ищем внутри вложенных JSON-строк (для Eletta Explore)
-            for key, item in data.items():
+            for dict_key, item in data.items():
                 if isinstance(item, dict) and "value" in item:
                     item_val = item.get("value")
-                    # Проверяем, похожа ли строка на JSON объект
                     if isinstance(item_val, str) and item_val.strip().startswith("{"):
                         try:
                             nested_data = json.loads(item_val)
@@ -106,7 +104,6 @@ class DelonghiCounterSensor(_Base):
                         except json.JSONDecodeError:
                             continue
 
-        # Обновляем кэш только если получили валидное числовое значение
         if val is not None:
             try:
                 self._last_valid_state = int(val)
@@ -129,7 +126,7 @@ class DelonghiInfoSensor(_Base):
     ) -> None:
         super().__init__(coord, key, friendly, icon)
         self._prop_name = prop_name
-        self._last_valid_state: Any = None  # Кэш
+        self._last_valid_state: Any = None
 
     @property
     def native_value(self) -> Any:
