@@ -1,0 +1,81 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Подключение De'Longhi Coffee Link",
+        "description": "Введите данные от вашей учетной записи Coffee Link. Это те же email и пароль, которые вы используете в официальном мобильном приложении на телефоне.",
+        "data": {
+          "email": "Email адрес",
+          "password": "Пароль"
+        }
+      }
+    },
+    "error": {
+      "invalid_auth": "Неверный email или пароль.",
+      "cannot_connect": "Не удалось подключиться к облаку De'Longhi (Ayla Networks).",
+      "no_devices": "К этому аккаунту не привязано ни одной кофемашины.",
+      "unknown": "Произошла неизвестная ошибка."
+    },
+    "abort": {
+      "already_configured": "Этот аккаунт De'Longhi уже настроен в Home Assistant."
+    }
+  },
+  "entity": {
+    "sensor": {
+      "total_beverages": { "name": "Всего напитков (Общий счетчик)" },
+      "total_espresso": { "name": "Всего Эспрессо" },
+      "total_milk_drinks": { "name": "Всего молочных напитков" },
+      "total_water": { "name": "Всего горячей воды" },
+      "total_cappuccino": { "name": "Всего Капучино" },
+      "total_latte_macchiato": { "name": "Всего Латте Маккиато" },
+      "total_caffelatte": { "name": "Всего Кафе Латте" },
+      "total_hot_milk": { "name": "Всего горячего молока" },
+      "total_hot_water": { "name": "Всего порций кипятка" },
+      "total_tea": { "name": "Всего чая" },
+      "total_coffee_pot": { "name": "Всего графинов кофе" },
+      "grounds_counter": { "name": "Счетчик отходов (гущи)" },
+      "descale_status": { "name": "Статус очистки от накипи" },
+      "water_hardness": { "name": "Жесткость воды" },
+      "software_version": { "name": "Версия ПО машины" },
+      "last_connected": { "name": "Последнее подключение к сети" },
+      "connection_status": { "name": "Статус подключения (Облако)" },
+      "total_iced_coffee": { "name": "Всего холодных напитков (Ice)" },
+      "total_cb_coffee": { "name": "Всего Cold Brew" },
+      "total_cb_espresso": { "name": "Всего Cold Brew Espresso" },
+      "total_cb_pot": { "name": "Всего графинов Cold Brew" }
+    },
+    "button": {
+      "espresso": { "name": "Приготовить Эспрессо" },
+      "coffee": { "name": "Приготовить Кофе" },
+      "long_coffee": { "name": "Приготовить Long (Американо)" },
+      "double_espresso": { "name": "Приготовить Двойной Эспрессо" },
+      "doppio": { "name": "Приготовить Doppio+" },
+      "americano": { "name": "Приготовить Американо" },
+      "cappuccino": { "name": "Приготовить Капучино" },
+      "latte_macchiato": { "name": "Приготовить Латте Маккиато" },
+      "caffelatte": { "name": "Приготовить Кафе Латте" },
+      "flat_white": { "name": "Приготовить Флэт Уайт" },
+      "espresso_macchiato": { "name": "Приготовить Эспрессо Маккиато" },
+      "hot_milk": { "name": "Налить горячее молоко" },
+      "cappuccino_doppio": { "name": "Приготовить Капучино Doppio+" },
+      "cappuccino_reverse": { "name": "Приготовить Капучино Reverse" },
+      "hot_water": { "name": "Налить кипяток" },
+      "tea": { "name": "Заварить чай" },
+      "coffee_pot": { "name": "Приготовить графин кофе" },
+      "cortado": { "name": "Приготовить Кортадо" },
+      "long_black": { "name": "Приготовить Long Black" },
+      "mug_to_go": { "name": "Приготовить Mug to Go (Термокружка)" },
+      "brew_over_ice": { "name": "Приготовить Brew Over Ice" },
+      "cold_americano": { "name": "Приготовить Cold Americano" },
+      "cold_coffee": { "name": "Приготовить Cold Coffee" },
+      "cold_espresso": { "name": "Приготовить Cold Espresso" },
+      "cold_cappuccino": { "name": "Приготовить Cold Cappuccino" },
+      "cold_latte_macchiato": { "name": "Приготовить Cold Латте Маккиато" },
+      "cold_caffelatte": { "name": "Приготовить Cold Кафе Латте" },
+      "cold_flat_white": { "name": "Приготовить Cold Флэт Уайт" },
+      "cold_milk": { "name": "Налить холодное молоко" },
+      "wake": { "name": "Пробудить (Включить)" },
+      "stop": { "name": "Стоп (Отмена)" }
+    }
+  }
+}
